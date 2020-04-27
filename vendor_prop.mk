@@ -72,6 +72,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.camera.preview.ubwc=0 \
     vendor.video.disable.ubwc=1
 
+#to use SnapdragonCamera api 2 version
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.sys.camera.camera2=true
+
+# [8901][Camera] Fix Camera rotate 90 degree in PC 20190516 Person Liu S
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.camera.lib2d.rotation=on
+
+# [8901][Camera] Disable ISP optimization 20190530 Person Liu S
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.camera.isp.clock.optmz=0
+
 # Display
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -244,7 +256,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.qc.sub.rdump.max=3 \
     ro.telephony.call_ring.multiple=false \
     DEVICE_PROVISIONED=1 \
-    ro.telephony.default_network=10,10 \
     ro.vendor.telephony.default_network=10,10 \
     ro.vendor.use_data_netmgrd=true \
     telephony.lteOnCdmaDevice=1 \
@@ -262,6 +273,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.vrte_logic=1 \
     persist.rcs.supported=0 \
     persist.dbg.ims_volte_enable=1
+
+#
+# Set network mode to (T/L/G/W/1X/EVDO, T/G/W/L) for 7+5 mode device on DSDS mode
+#
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.default_network=20,20
 
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \
