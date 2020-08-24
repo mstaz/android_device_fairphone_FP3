@@ -85,21 +85,30 @@ static void handleNotification(const LightState& state) {
 
     if (state.flashMode == Flash::TIMED) {
         /* Set LED */
-        // set(RED_LED DELAY_OFF, state.flashOffMs);
-        // set(RED_LED DELAY_ON, state.flashOnMs);
-        // set(GREEN_LED DELAY_OFF, state.flashOffMs);
-        // set(GREEN_LED DELAY_ON, state.flashOnMs);
-        set(BLUE_LED DELAY_OFF, state.flashOffMs);
-        set(BLUE_LED DELAY_ON, state.flashOnMs);
 
+        if(redBrightness > 0) {
+            set(RED_LED DELAY_OFF, state.flashOffMs);
+            set(RED_LED DELAY_ON, state.flashOnMs);
+            set(RED_LED BREATH, 1);
+        }
+        else if(greenBrightness > 0) {
+            set(GREEN_LED DELAY_OFF, state.flashOffMs);
+            set(GREEN_LED DELAY_ON, state.flashOnMs);
+            set(GREEN_LED BREATH, 1);
+        }
+        else {
+            set(BLUE_LED DELAY_OFF, state.flashOffMs);
+            set(BLUE_LED DELAY_ON, state.flashOnMs);
+            set(BLUE_LED BREATH, 1);
+        }
 
         // /* Enable blinking. */
         // if (redBrightness > 0)
         //     set(RED_LED BREATH, 1);
         // if (greenBrightness > 0)
         //     set(GREEN_LED BREATH, 1);
-        if (blueBrightness > 0)
-            set(BLUE_LED BREATH, 1);
+        //if (blueBrightness > 0)
+        //    set(BLUE_LED BREATH, 1);
     } else {
         set(RED_LED BRIGHTNESS, redBrightness);
         set(GREEN_LED BRIGHTNESS, greenBrightness);
